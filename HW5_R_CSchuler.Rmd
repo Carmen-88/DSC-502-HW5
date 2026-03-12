@@ -1,0 +1,59 @@
+---
+title: "HW5_CSchuler"
+output: html_document
+date: "2026-03-10"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r library setup}
+
+library(maps)
+library(mapdata)
+library(ggplot2)
+library(ggrepel)
+library(cowplot)
+library(dplyr)
+
+```
+
+```{r 2a}
+
+# #2a
+states = map_data("state")
+california = states %>% filter(region == "california")
+
+```
+
+```{r 2b}
+
+# #2b
+load("G:/My Drive/Personal/Grad Program/DSC 502 - Data Visualization for EDA/R Scripts./wind_turbines.rda")
+wind_ca = wind_turbines %>% filter(t_state == "CA")
+
+```
+
+```{r 2c}
+
+# #2c
+ggplot(data=california, aes(x=long, y=lat, group=group)) +
+  geom_polygon(fill="darkblue", color="black")
+
+```
+
+```{r 2d}
+
+# #2d
+ggplot() +
+  geom_polygon(data=california, aes(x=long, y=lat, group=group), fill="darkblue", color="black") +
+  geom_point(data=wind_ca, aes(x=xlong, y=ylat), color="orange") +
+  coord_fixed(1.3)
+
+```
+
+
+
+
+
